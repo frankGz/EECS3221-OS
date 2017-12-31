@@ -1,0 +1,20 @@
+Guozhe Gao
+213903596
+
+1.	pthread_thing_operation(..) (PTHREADS(7))
+
+2.	mutexes - Mutual exclusion lock: Block access to variables by other threads. This enforces exclusive access by a thread to a 	variable or set of variables.
+	joins - Make a thread wait till others are complete (terminated).
+	condition variables - data type pthread_cond_t
+	(PTHREAD_JOIN(3),PTHREADS(7))
+
+3.	To avoid spurious wakeups, since the return from pthread_cond_timedwait() or pthread_cond_wait() does not imply anything about the value of this predicate, the predicate should be re-evaluated upon such return.(PTHREAD_COND_WAIT(3))
+
+4.	Suppose thread A wakes up thread B.
+	For Hansen-style(Java, Linux pthread and other OSes), A will continue executing. After A release the lock, execute B. 
+	For Hoare-style, B will excute next and thread A sleep. After B finished, A continue executing.
+	(SIGNAL(7),SIGNAL(2))
+
+5.	When the condition variable is blocked, it only can be signaled by another thread, but holding two mutexes will also block execute of other threads. thus causes deadlock.(PTHREAD_COND_WAIT(3))
+
+6.	The detached thread cannot be joined back once detached. The pthread_detach() function marks the thread identified by thread as detached.When a detached thread terminates, its resources are automatically released back to the system without the need for another thread to join with the terminated thread.(PTHREAD_DETACH(3))
